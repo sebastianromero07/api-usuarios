@@ -56,4 +56,4 @@ async def delete_user(user_id: int):
     return {"message": "User deleted successfully"} 
 
 if __name__ == "__main__":
-    run(app, host="0.0.0.0", port=8002)
+    run(app, host="0.0.0.0", port=8001)
