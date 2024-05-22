@@ -2,6 +2,8 @@ from fastapi import FastAPI, HTTPException, Path
 from pydantic import BaseModel
 from db import conn, commit
 from uvicorn import run
+from fastapi.middleware.cors import CORSMiddleware
+
 
 # Definir el modelo Pydantic para los usuarios
 class User(BaseModel):
@@ -13,6 +15,14 @@ class User(BaseModel):
     address: str
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:5173"],  # Agrega el origen de tu aplicación React
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 @app.get("/users")
 async def get_users():
